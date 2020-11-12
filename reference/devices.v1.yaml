@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: devices
+  version: '1.0'
+  description: query IoT devices
+  contact:
+    name: Your name
+    email: your name
+  license:
+    name: MIT
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas: {}
+  securitySchemes:
+    API Key:
+      name: API Key
+      type: apiKey
+      in: query
