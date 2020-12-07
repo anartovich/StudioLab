@@ -2,6 +2,7 @@ title: Error
 type: object
 x-tags:
   - IOT
+description: Standard status response schema for errors.
 properties:
   code:
     type: integer
@@ -15,4 +16,3 @@ properties:
 required:
   - code
   - message
-description: Standard status response schema for errors.

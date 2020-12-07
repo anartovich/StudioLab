@@ -23,6 +23,15 @@
       "format": "date-time",
       "example": "2017-07-21T17:32:28Z",
       "description": "last update of device data"
+    },
+    "user": {
+      "$ref": "./User.v1.json"
+    },
+    "account": {
+      "$ref": "./Account.v1.json"
+    },
+    "location": {
+      "$ref": "./Location.v1.json"
     }
   },
   "required": [
