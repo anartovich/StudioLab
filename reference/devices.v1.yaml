@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: devices
+  version: '1.0'
+  description: Manage IOD devices in our company
+  contact:
+    name: Alex N
+    url: 'https://alexn.com'
+    email: alexn@test.org
+  termsOfService: 'https://alexn.com/terms'
+  license:
+    url: 'https://alexn.com/license'
+    name: MIT
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas: {}
+  securitySchemes:
+    API Key:
+      name: apiKey
+      type: apiKey
+      in: header
+security:
+  - API Key: []

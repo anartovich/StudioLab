@@ -2,17 +2,14 @@ title: Response Status
 type: object
 x-tags:
   - IOT
+description: Generic status response schema for successful requests.
 properties:
-  code:
+  deviceId:
     type: integer
-    format: int32
-    example: 404
-    description: 'status code as defined by the [Hypertext Transfer Protocol (HTTP) Status Code Registry](https://www.ietf.org/assignments/http-status-codes/http-status-codes.xml)'
+    example: 12345
   message:
     type: string
-    example: Not Found
-    description: 'status code description as defined by the [Hypertext Transfer Protocol (HTTP) Status Code Registry](https://www.ietf.org/assignments/http-status-codes/http-status-codes.xml)'
+    example: Device was created
 required:
-  - code
+  - deviceId
   - message
-description: Generic status response schema for successful requests.
