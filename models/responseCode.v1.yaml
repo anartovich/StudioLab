@@ -16,3 +16,7 @@ required:
   - code
   - message
 description: Generic status response schema for successful requests.
+x-examples:
+  example-1:
+    code: 12345
+    message: Pixel 4.5

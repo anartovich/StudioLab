@@ -40,7 +40,8 @@ paths:
         - $ref: '#/components/parameters/spaceid'
     post:
       summary: newDevice
-      tags: []
+      tags:
+        - IOT
       responses:
         '201':
           description: Created
@@ -48,11 +49,21 @@ paths:
             application/json:
               schema:
                 $ref: ../models/responseCode.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    code: 123
+                    message: Pixel 4.5
       operationId: post-api-devices
       security:
         - API Key: []
       parameters:
         - $ref: '#/components/parameters/deviceName'
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-type
       requestBody:
         content:
           application/json:
@@ -135,3 +146,5 @@ components:
       name: API Key
       type: apiKey
       in: query
+tags:
+  - name: IOT
