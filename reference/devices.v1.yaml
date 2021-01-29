@@ -13,7 +13,70 @@ info:
     name: MIT
 servers:
   - url: 'http://localhost:3000'
-paths: {}
+paths:
+  '/api/devices/{accountid}':
+    get:
+      summary: getDevices
+      tags:
+        - IOT
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/device.v1.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ../models/error.v1.yaml
+      operationId: get-api-devices
+      description: Get a list of all devices
+      security:
+        - API Key: []
+      parameters:
+        - $ref: '#/components/parameters/deviceid'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/spaceid'
+    post:
+      summary: newDevice
+      tags:
+        - IOT
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../models/responseCode.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ../models/error.v1.yaml
+      operationId: post-api-devices
+      parameters:
+        - $ref: '#/components/parameters/deviceName'
+        - $ref: '#/components/parameters/spaceid'
+      security:
+        - API Key: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/device.v1.json
+    parameters:
+      - schema:
+          type: string
+          example: iotdevices
+        name: accountid
+        in: path
+        description: unique ID
+        required: true
 components:
   parameters:
     accountid:
