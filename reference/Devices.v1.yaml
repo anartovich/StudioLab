@@ -4,16 +4,138 @@ info:
   version: 1.0.0
   description: Manage your IoT devices using this API
   contact:
-    name: Joe
-    url: Dow
-    email: joe_dow@test.org
+    name: John
+    url: Doe
+    email: john_doe@test.org
   termsOfService: 'https://www.test.org/terms-of-service'
   license:
     name: MIT
     url: 'https://mit-license.org'
 servers:
   - url: 'http://localhost:3000'
-paths: {}
+paths:
+  '/api/devices/{accountid}':
+    get:
+      summary: getDevices
+      tags:
+        - IoT
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/device.v1.json
+              examples:
+                example-1:
+                  value:
+                    deviceID: camera123
+                    deviceName: frontDoorCamera
+                    dateCreated: '2020-07-21T17:32:28Z'
+                    dateUpdated: '2021-01-21T17:32:28Z'
+                    user:
+                      userID: johnDoe
+                      userName: John Doe
+                      email: john_doe@test.org
+                    account:
+                      accountID: johnsAccount
+                      accountName: Johns account
+                      userCount: 1
+                      deviceCount: 5
+                    location:
+                      '17': null
+                      lat: 40.7484405
+                      long: -73.9878531
+                      geoTracking: true
+                example-2:
+                  value:
+                    deviceID: camera234
+                    deviceName: backDoorCamera
+                    dateCreated: '2020-07-21T17:32:28Z'
+                    dateUpdated: '2021-01-21T17:32:28Z'
+                    user:
+                      userID: johnDoe
+                      userName: John Doe
+                      email: john_doe@test.org
+                    account:
+                      accountID: johnsAccount
+                      accountName: Johns account
+                      userCount: 1
+                      deviceCount: 5
+                    location:
+                      '17': null
+                      lat: 40.7484405
+                      long: -73.9878531
+                      geoTracking: true
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ../models/error.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    code: 500
+                    message: Server is not responsive. Try again later.
+      operationId: get-api-devices
+      security:
+        - API Key: []
+      parameters:
+        - $ref: '#/components/parameters/deviceid'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/spaceid'
+      description: Get a list of devices for a specific account.
+    post:
+      summary: newDevice
+      tags:
+        - IoT
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../models/responseCode.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    code: 201
+                    message: Device successfully created.
+      operationId: post-api-devices
+      description: Create a new device for a specific account.
+      security:
+        - API Key: []
+      parameters:
+        - $ref: '#/components/parameters/deviceName'
+        - $ref: '#/components/parameters/spaceid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/device.v1.json
+            examples:
+              example-1:
+                value:
+                  deviceName: frontDoorCamera
+                  dateCreated: '2020-07-21T17:32:28Z'
+                  user:
+                    userID: johnDoe
+                    userName: John Doe
+                    email: john_doe@test.org
+                  account:
+                    accountID: johnsAccount
+                  location:
+                    geoTracking: true
+    parameters:
+      - schema:
+          type: string
+          example: doesHome
+        name: accountid
+        in: path
+        required: true
+        description: unique account ID
 components:
   schemas: {}
   securitySchemes:
@@ -21,6 +143,69 @@ components:
       name: KeyId
       type: apiKey
       in: header
+  parameters:
+    accountid:
+      name: accountid
+      in: path
+      schema:
+        type: string
+        example: jetsonsFutureHome
+      description: unique per account (see `'My Account'` for more information)
+      required: true
+    spaceid:
+      name: spaceid
+      in: query
+      required: false
+      schema:
+        type: string
+        example: seattle-office
+      description: location associated with the devices (see `'My Spaces'` for more information)
+      allowEmptyValue: true
+    deviceName:
+      name: deviceName
+      in: header
+      required: false
+      schema:
+        type: string
+        default: newDevice
+        example: garageCamera
+      description: devices in the same space require unique names or will be assigned the default name `'newDevice'`
+    deviceid:
+      name: deviceid
+      in: header
+      required: true
+      schema:
+        type: string
+        default: all
+        example: 123abc
+      description: 'unique identifiers for devices registered on the service cloud, when empty it defaults to `''''all'''''
+    sort:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
+        default: desc
+        example: asc
+      description: will sort objects returned from the request
+      allowEmptyValue: true
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        default: 10
+        minimum: 1
+        maximum: 25
+        example: 15
+      description: specify the number of results returned from the request
+      allowEmptyValue: true
+  examples: {}
 tags:
   - name: IoT
 security:

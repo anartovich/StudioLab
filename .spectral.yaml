@@ -1,0 +1,25 @@
+formats: []
+extends:
+  - 'spectral:oas'
+rules:
+  camel-case-name:
+    description: Name should be camelCased.
+    type: style
+    given: $.name
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  whitelisted-tags:
+    description: Pick from a very restrictive set of tags.
+    type: style
+    given: $.paths.*
+    then:
+      field: tags
+      function: enumeration
+      functionOptions:
+        values:
+          - IoT
+          - devices
+          - groups
+          - categories
