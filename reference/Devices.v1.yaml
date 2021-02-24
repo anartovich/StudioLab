@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: Devices
+  version: 1.0.0
+  description: Manage your IoT devices using this API
+  contact:
+    name: Joe
+    url: Dow
+    email: joe_dow@test.org
+  termsOfService: 'https://www.test.org/terms-of-service'
+  license:
+    name: MIT
+    url: 'https://mit-license.org'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas: {}
+  securitySchemes:
+    API Key:
+      name: KeyId
+      type: apiKey
+      in: header
+tags:
+  - name: IoT
+security:
+  - API Key: []
