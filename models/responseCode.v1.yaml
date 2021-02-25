@@ -17,6 +17,7 @@ properties:
     maximum: 599
   message:
     type: string
+    x-faker: lorem.sentences
     example: Not Found
     description: 'status code description as defined by the [Hypertext Transfer Protocol (HTTP) Status Code Registry](https://www.ietf.org/assignments/http-status-codes/http-status-codes.xml)'
 required:
