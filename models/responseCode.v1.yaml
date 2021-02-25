@@ -2,12 +2,19 @@ title: Response Status
 type: object
 x-tags:
   - IOT
+description: Generic status response schema for successful requests.
+x-examples:
+  example-1:
+    code: 500
+    message: The server is unresponsive. Try again later.
 properties:
   code:
     type: integer
     format: int32
     example: 404
     description: 'status code as defined by the [Hypertext Transfer Protocol (HTTP) Status Code Registry](https://www.ietf.org/assignments/http-status-codes/http-status-codes.xml)'
+    minimum: 100
+    maximum: 599
   message:
     type: string
     example: Not Found
@@ -15,8 +22,3 @@ properties:
 required:
   - code
   - message
-description: Generic status response schema for successful requests.
-x-examples:
-  example-1:
-    code: 500
-    message: The server is unresponsive. Try again later.

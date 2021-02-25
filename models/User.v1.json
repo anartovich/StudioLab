@@ -4,13 +4,16 @@
   "description": "Users associated with a CloudHome account. Administrative priviledges are indicated to show which users can configure device management and which users can only interact with configured devices.",
   "properties": {
     "userID": {
-      "type": "string"
+      "type": "string",
+      "x-faker": "random.uuid"
     },
     "userName": {
-      "type": "string"
+      "type": "string",
+      "x-faker": "name.findName"
     },
     "email": {
-      "type": "string"
+      "type": "string",
+      "x-faker": "internet.email"
     }
   },
   "required": [
