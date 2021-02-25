@@ -4,8 +4,8 @@ info:
   version: 1.0.0
   description: Manage your IoT devices using this API
   contact:
-    name: John
-    url: Doe
+    name: John Doe
+    url: 'https://www.test.org/support'
     email: john_doe@test.org
   termsOfService: 'https://www.test.org/terms-of-service'
   license:
@@ -68,16 +68,7 @@ paths:
                       long: -73.9878531
                       geoTracking: true
         '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: ../models/error.v1.yaml
-              examples:
-                example-1:
-                  value:
-                    code: 500
-                    message: Server is not responsive. Try again later.
+          $ref: '#/components/responses/500'
       operationId: get-api-devices
       security:
         - API Key: []
@@ -103,6 +94,8 @@ paths:
                   value:
                     code: 201
                     message: Device successfully created.
+        '500':
+          $ref: '#/components/responses/500'
       operationId: post-api-devices
       description: Create a new device for a specific account.
       security:
@@ -206,6 +199,18 @@ components:
       description: specify the number of results returned from the request
       allowEmptyValue: true
   examples: {}
+  responses:
+    '500':
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/responseCode.v1.yaml
+          examples:
+            example-1:
+              value:
+                code: 500
+                message: The server is unresponsive. Try again later.
 tags:
   - name: IoT
 security:
