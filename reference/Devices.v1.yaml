@@ -71,7 +71,7 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-api-devices
       security:
-        - API Key: []
+        - API_Key: []
       parameters:
         - $ref: '#/components/parameters/deviceid'
         - $ref: '#/components/parameters/sort'
@@ -99,7 +99,7 @@ paths:
       operationId: post-api-devices
       description: Create a new device for a specific account.
       security:
-        - API Key: []
+        - API_Key: []
       parameters:
         - $ref: '#/components/parameters/deviceName'
         - $ref: '#/components/parameters/spaceid'
@@ -132,7 +132,7 @@ paths:
 components:
   schemas: {}
   securitySchemes:
-    API Key:
+    API_Key:
       name: KeyId
       type: apiKey
       in: header
